@@ -39,7 +39,7 @@ public class CandidatoController {
 	 */
 	@GetMapping("/lista")
 	public String getCandidatosPage(Model model) {
-		model.addAttribute("candidatos", model);
+		model.addAttribute("candidatos", candidatoService.getListaCandidato().getListaCandidatos());
 		return "lista_candidatos";
 	}
 	
@@ -51,7 +51,7 @@ public class CandidatoController {
 	 */
 	@GetMapping("/nuevo")
 	public String getNuevoCandidatoPage(Model model) {
-		model.addAttribute("candidato", model);
+		model.addAttribute("candidato", candidatoService.getCandidato());
 		return "nuevo_candidato";
 	}
 	
