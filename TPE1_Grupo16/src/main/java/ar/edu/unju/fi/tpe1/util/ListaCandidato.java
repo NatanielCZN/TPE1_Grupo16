@@ -29,7 +29,7 @@ public class ListaCandidato {
 	public List<Candidato> getListaCandidatos() {
 		return listaCandidatos;
 	}
-
+	
 	public void setListaCandidatos(List<Candidato> listaCandidatos) {
 		this.listaCandidatos = listaCandidatos;
 	}	
