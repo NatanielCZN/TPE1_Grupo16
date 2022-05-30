@@ -1,10 +1,35 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
-</head>
-<body>
+<meta charset="UTF-8">
+<title>Home</title>
 
+<link rel="stylesheet" type="text/css"
+	th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+</head>
+
+<body class="container bg-secondary">
+	<header th:replace="/layouts/header :: header"></header>
+	
+	<section class="row bg-light text-center">
+		<h2>BIENVENIDOS</h2>
+		<hr />
+		<p>
+        	Esta pagina web es producto del desarrollo del TP Evaluativo de la materia Programación Visual perteneciente a APU
+       	</p>
+       	<p>
+       		Grupo: 16<br />
+        	Alumno: Cazon, Nataniel Patricio Jesus<br />
+        	DNI: 37729019<br />
+        	LU: APU0004039
+       	</p>
+	</section>
+		
+	<footer th:replace="layouts/footer :: footer"></footer>
+
+	<script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
+	<script type="text/javascript" th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+	<script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 </body>
 </html>

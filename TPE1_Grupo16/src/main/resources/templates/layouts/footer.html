@@ -1,10 +1,39 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
-</head>
-<body>
+<meta charset="UTF-8">
+<title>Footer</title>
 
+<link rel="stylesheet" type="text/css"
+	th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+</head>
+
+<body>
+	<footer th:fragment="footer"
+		class="row text-center bg-primary text-white">
+		<div class="col-12 p-4">
+			<div class="row">
+				<div class="col-12 col-lg-6 offset-lg-3">
+					<div class="ratio ratio-16x9">						
+						<iframe class="shadow-1-strong rounded"
+							th:src="@{/videos/IntroXbox.mp4}" title="xboxIntro" ></iframe>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-12 text-center bg-dark p-3">
+			<p>
+				© 2022 Copyright: <a class="text-white" >fsrG16@gmail.com.ar</a>
+				- Grupo 16 - Mansion de DIO - Teléfono (20) 4444444 - El Cairo -
+				Egipto
+			</p>
+		</div>
+	</footer>
+	
+	<script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
+	<script type="text/javascript" th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+	<script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 </body>
-</html>
+</html>>
