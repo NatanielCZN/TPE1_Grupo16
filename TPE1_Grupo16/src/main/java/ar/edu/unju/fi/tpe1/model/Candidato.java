@@ -27,7 +27,8 @@ public class Candidato {
 	 * Constructor no parametrizado
 	 */
 	public Candidato() {
-		
+		this.image = "FondoN.png";
+		this.cantidadVotos = 0;
 	}
 	
 	/*

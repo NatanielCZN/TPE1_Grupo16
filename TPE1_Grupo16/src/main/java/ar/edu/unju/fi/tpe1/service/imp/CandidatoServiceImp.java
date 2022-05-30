@@ -39,6 +39,7 @@ public class CandidatoServiceImp implements ICandidatoService {
 				cand.setNombre(candidato.getNombre());
 				cand.setEmpresa(candidato.getEmpresa());
 				cand.setDescripcion(candidato.getDescripcion());
+				cand.setImage("FondoN.png");
 			}
 		}
 	}
