@@ -92,7 +92,7 @@ public class CandidatoController {
 	 */
 	@GetMapping("/editar/{codigo}")
 	public ModelAndView getEditarDatosCandidatoPage(@PathVariable(value="codigo") String codigo) {
-		ModelAndView modelAV = new ModelAndView("edicion_docente");
+		ModelAndView modelAV = new ModelAndView("edicion_candidato");
 		Candidato candidato = candidatoService.buscarCandidato(codigo);
 		modelAV.addObject("candidato", candidato);
 		
