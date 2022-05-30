@@ -19,6 +19,8 @@ public class Candidato {
 	@Size(min = 3, max = 1000, message = "La descripcion debe tener entre 10 a 1000 caracteres")
 	@NotEmpty(message = "La descripcion no puede estar vacia")
 	private String descripcion;	
+	
+	private String image;	
 	private int cantidadVotos;
 	
 	/*
@@ -29,15 +31,31 @@ public class Candidato {
 	}
 	
 	/*
-	 * Constructor parametrizado
+	 * Primer constructor parametrizado
 	 */
-	public Candidato(String codigo, String nombre, String empresa, String descripcion, int cantidadVotos) {
+	public Candidato(String codigo, String nombre, String empresa, String descripcion, String image) {
 		super();
 		this.codigo = codigo;
 		this.nombre = nombre;
 		this.empresa = empresa;
 		this.descripcion = descripcion;
-		this.cantidadVotos = cantidadVotos;
+		this.image = image;
+		
+		this.cantidadVotos = 0;
+	}
+	
+	/*
+	 * Segundo constructor parametrizado
+	 */
+	public Candidato(String codigo, String nombre, String empresa, String descripcion) {
+		super();
+		this.codigo = codigo;
+		this.nombre = nombre;
+		this.empresa = empresa;
+		this.descripcion = descripcion;
+		
+		this.image = "FondoN.png";
+		this.cantidadVotos = 0;
 	}
 
 	/*
@@ -70,6 +88,13 @@ public class Candidato {
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
+	
+	public String getImage() {
+		return image;
+	}
+	public void setImage(String image) {
+		this.image = image;
+	}
 
 	public int getCantidadVotos() {
 		return cantidadVotos;
@@ -77,4 +102,10 @@ public class Candidato {
 	public void setCantidadVotos(int cantidadVotos) {
 		this.cantidadVotos = cantidadVotos;
 	}
+
+	@Override
+	public String toString() {
+		return "Candidato [codigo=" + codigo + ", nombre=" + nombre + ", empresa=" + empresa + ", descripcion="
+				+ descripcion + ", image=" + image + ", cantidadVotos=" + cantidadVotos + "]";
+	}	
 }
