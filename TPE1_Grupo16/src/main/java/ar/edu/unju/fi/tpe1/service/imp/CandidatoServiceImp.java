@@ -46,6 +46,14 @@ public class CandidatoServiceImp implements ICandidatoService {
 	@Override
 	public void eliminarCandidato(String codigo) {
 		// Elimino un Candidato de la lista de candidatos
+		int posicion = 0;
+		for(Candidato cand : this.listaCandidato.getListaCandidatos()) {
+			if(cand.getCodigo().equals(codigo)) {
+				this.listaCandidato.getListaCandidatos().remove(posicion);
+				break;
+			}
+			posicion++;
+		}		
 	}
 
 	@Override

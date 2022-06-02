@@ -126,7 +126,7 @@ public class CandidatoController {
 	@GetMapping("/eliminar/{codigo}")
 	public ModelAndView eliminarCandidato(@PathVariable("codigo") String codigo) {
 		ModelAndView modelAV = new ModelAndView("redirect:/candidato/lista");
-		
+		candidatoService.eliminarCandidato(codigo);
 		return modelAV;
 	}
 }
