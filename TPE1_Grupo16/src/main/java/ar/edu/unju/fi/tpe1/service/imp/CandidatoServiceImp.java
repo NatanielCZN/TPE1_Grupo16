@@ -57,8 +57,8 @@ public class CandidatoServiceImp implements ICandidatoService {
 	@Override
 	public Candidato buscarCandidato(String codigo) {
 		// Busca un Candidato por codigo y devuelve el objeto asociado al codigo
-		Optional<Candidato> candidato = this.listaCandidato.getListaCandidatos().stream().filter(c -> c.getCodigo() == codigo).findFirst();
-		
+		Optional<Candidato> candidato = this.listaCandidato.getListaCandidatos().stream().filter(c -> c.getCodigo().equals(codigo)).findFirst();
+
 		return candidato.get();
 	}
 }

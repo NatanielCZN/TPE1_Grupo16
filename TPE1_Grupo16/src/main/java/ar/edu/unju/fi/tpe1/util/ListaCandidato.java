@@ -27,7 +27,7 @@ public class ListaCandidato {
 	 * Metodos accesores
 	 */
 	public List<Candidato> getListaCandidatos() {
-		return listaCandidatos;
+		return this.listaCandidatos;
 	}
 	
 	public void setListaCandidatos(List<Candidato> listaCandidatos) {
