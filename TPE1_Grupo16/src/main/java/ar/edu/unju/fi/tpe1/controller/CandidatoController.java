@@ -109,7 +109,7 @@ public class CandidatoController {
 	public ModelAndView editarDatosCandidato(@Validated @ModelAttribute("candidato") Candidato candidatoMod, BindingResult bindingR) {
 		if(bindingR.hasErrors()) {
 			ModelAndView modelAV = new ModelAndView("edicion_candidato");
-			modelAV.addObject("docente", candidatoMod);
+			modelAV.addObject("candidato", candidatoMod);
 			return modelAV;
 		}
 		

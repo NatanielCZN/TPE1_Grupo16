@@ -28,18 +28,17 @@ public class CandidatoServiceImp implements ICandidatoService {
 	@Override
 	public boolean guardarCandidato(Candidato candidato) {
 		// Guarda un objeto Candidato en la lista de candidatos
-		return listaCandidato.getListaCandidatos().add(candidato);
+		return this.listaCandidato.getListaCandidatos().add(candidato);
 	}
 
 	@Override
 	public void modificarCandidato(Candidato candidato) {
 		// Buscar el Candidato con el codigo especificado y actualizar sus atributos
-		for(Candidato cand : listaCandidato.getListaCandidatos()) {
-			if(cand.getCodigo() == candidato.getCodigo()) {
+		for(Candidato cand : this.listaCandidato.getListaCandidatos()) {
+			if(cand.getCodigo().equals(candidato.getCodigo())) {
 				cand.setNombre(candidato.getNombre());
 				cand.setEmpresa(candidato.getEmpresa());
 				cand.setDescripcion(candidato.getDescripcion());
-				cand.setImage("FondoN.png");
 			}
 		}
 	}
@@ -58,7 +57,7 @@ public class CandidatoServiceImp implements ICandidatoService {
 	@Override
 	public Candidato buscarCandidato(String codigo) {
 		// Busca un Candidato por codigo y devuelve el objeto asociado al codigo
-		Optional<Candidato> candidato = listaCandidato.getListaCandidatos().stream().filter(c -> c.getCodigo() == codigo).findFirst();
+		Optional<Candidato> candidato = this.listaCandidato.getListaCandidatos().stream().filter(c -> c.getCodigo() == codigo).findFirst();
 		
 		return candidato.get();
 	}
