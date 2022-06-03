@@ -21,15 +21,13 @@ public class Candidato {
 	private String descripcion;	
 	
 	private String image;	
-	private int votosDisponibles;
 	private int cantidadVotos;
 	
 	/*
 	 * Constructor no parametrizado
 	 */
 	public Candidato() {
-		this.image = "FondoN.png";
-		this.votosDisponibles = 3;
+		this.image = "FNuevo.png";
 		this.cantidadVotos = 0;
 	}
 	
@@ -44,22 +42,6 @@ public class Candidato {
 		this.descripcion = descripcion;
 		this.image = image;
 		
-		this.votosDisponibles = 3;
-		this.cantidadVotos = 0;
-	}
-	
-	/*
-	 * Segundo constructor parametrizado
-	 */
-	public Candidato(String codigo, String nombre, String empresa, String descripcion) {
-		super();
-		this.codigo = codigo;
-		this.nombre = nombre;
-		this.empresa = empresa;
-		this.descripcion = descripcion;
-		
-		this.image = "FondoN.png";
-		this.votosDisponibles = 3;
 		this.cantidadVotos = 0;
 	}
 
@@ -99,13 +81,6 @@ public class Candidato {
 	}
 	public void setImage(String image) {
 		this.image = image;
-	}
-
-	public int getVotosDisponibles() {
-		return votosDisponibles;
-	}
-	public void setVotosDisponibles(int votosDisponibles) {
-		this.votosDisponibles = votosDisponibles;
 	}
 	
 	public int getCantidadVotos() {

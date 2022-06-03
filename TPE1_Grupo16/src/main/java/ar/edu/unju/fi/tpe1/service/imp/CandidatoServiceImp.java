@@ -69,4 +69,15 @@ public class CandidatoServiceImp implements ICandidatoService {
 
 		return candidato.get();
 	}
+	
+	@Override
+	public void sumarVoto(String codigo) {
+		// Suma un voto al candidato cuyo codigo sea igual al pasado por parametro
+		for(Candidato cand : this.listaCandidato.getListaCandidatos()) {
+			if(cand.getCodigo().equals(codigo)) {
+				cand.setCantidadVotos(cand.getCantidadVotos() + 1);
+				break;
+			}
+		}	
+	}
 }

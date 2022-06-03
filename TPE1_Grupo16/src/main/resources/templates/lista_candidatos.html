@@ -25,14 +25,14 @@
 		        <div class="col" th:each="candidato: ${candidatos}">
 		            <div class="card border-dark" >
 		                <img th:src="@{/images/{name}(name = ${candidato.image})}" class="card-img-top" alt="Imagen" >
-		                <div class="card-body text-start bg-secondary">
+		                <div class="card-body text-start bgCard">
 		                    <h5 class="card-title" th:text="${candidato.nombre}"><strong></strong></h5>
-		                    <p class="card-text text-white" th:text="${candidato.empresa}" ></p>
+		                    <p class="card-text text-secondary" th:text="${candidato.empresa}" ></p>
 		                    <hr />
 		                    <p class="card-text" th:text="${candidato.descripcion}" ></p>
 		                    
 		                    <div class="text-center">
-			                    <a class="border-dark btn btn-primary my-2" id="votarCandidato" th:href="@{#}" >Votar</a>
+			                    <a class="border-dark btn btn-primary my-2" id="votarCandidato" th:href="@{/candidato/votar/} + ${candidato.codigo}" >Votar</a>
 			                    <a class="border-dark btn btn-danger my-2" id="editarCandidato" th:href="@{/candidato/editar/} + ${candidato.codigo}">Editar</a>
 								<a class="border-dark btn btn-warning my-2" id="eliminarCandidato" th:href="@{/candidato/eliminar/} + ${candidato.codigo}" >Eliminar</a>
 		                    </div>
