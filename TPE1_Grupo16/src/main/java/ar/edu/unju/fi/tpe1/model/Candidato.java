@@ -27,7 +27,7 @@ public class Candidato {
 	 * Constructor no parametrizado
 	 */
 	public Candidato() {
-		this.image = "FondoN.png";
+		this.image = "FNuevo.png";
 		this.cantidadVotos = 0;
 	}
 	
@@ -42,20 +42,6 @@ public class Candidato {
 		this.descripcion = descripcion;
 		this.image = image;
 		
-		this.cantidadVotos = 0;
-	}
-	
-	/*
-	 * Segundo constructor parametrizado
-	 */
-	public Candidato(String codigo, String nombre, String empresa, String descripcion) {
-		super();
-		this.codigo = codigo;
-		this.nombre = nombre;
-		this.empresa = empresa;
-		this.descripcion = descripcion;
-		
-		this.image = "FondoN.png";
 		this.cantidadVotos = 0;
 	}
 
@@ -96,7 +82,7 @@ public class Candidato {
 	public void setImage(String image) {
 		this.image = image;
 	}
-
+	
 	public int getCantidadVotos() {
 		return cantidadVotos;
 	}

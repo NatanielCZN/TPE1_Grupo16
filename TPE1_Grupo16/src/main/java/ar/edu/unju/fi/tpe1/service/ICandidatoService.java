@@ -14,4 +14,5 @@ public interface ICandidatoService {
 	public void eliminarCandidato(String codigo);
 	public ListaCandidato getListaCandidato();
 	public Candidato buscarCandidato(String codigo);
+	public void sumarVoto(String codigo);
 }

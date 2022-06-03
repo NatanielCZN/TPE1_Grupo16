@@ -33,7 +33,7 @@ public class CandidatoController {
 	
 	/**
 	 * Obtengo la URL de la pagina "lista_candidatos".
-	 * Esta mostrara el listado de docentes.
+	 * Esta mostrara el listado de candidatos.
 	 * @param model
 	 * @return
 	 */
@@ -45,7 +45,7 @@ public class CandidatoController {
 	
 	/**
 	 * Obtengo la URL de la pagina "nuevo_candidato".
-	 * Esta mostrara el formulario para agregar un nuevo docente.
+	 * Esta mostrara el formulario para agregar un nuevo candidato.
 	 * @param model
 	 * @return
 	 */
@@ -91,7 +91,7 @@ public class CandidatoController {
 	 * @return
 	 */
 	@GetMapping("/editar/{codigo}")
-	public ModelAndView getEditarDatosCandidatoPage(@PathVariable(value="codigo") String codigo) {
+	public ModelAndView getEditarDatosCandidatoPage(@PathVariable(value = "codigo") String codigo) {
 		ModelAndView modelAV = new ModelAndView("edicion_candidato");
 		Candidato candidato = candidatoService.buscarCandidato(codigo);
 		modelAV.addObject("candidato", candidato);
@@ -109,7 +109,7 @@ public class CandidatoController {
 	public ModelAndView editarDatosCandidato(@Validated @ModelAttribute("candidato") Candidato candidatoMod, BindingResult bindingR) {
 		if(bindingR.hasErrors()) {
 			ModelAndView modelAV = new ModelAndView("edicion_candidato");
-			modelAV.addObject("docente", candidatoMod);
+			modelAV.addObject("candidato", candidatoMod);
 			return modelAV;
 		}
 		
@@ -126,7 +126,32 @@ public class CandidatoController {
 	@GetMapping("/eliminar/{codigo}")
 	public ModelAndView eliminarCandidato(@PathVariable("codigo") String codigo) {
 		ModelAndView modelAV = new ModelAndView("redirect:/candidato/lista");
-		
+		candidatoService.eliminarCandidato(codigo);
+		return modelAV;
+	}
+	
+	/**
+	 * Obtengo la URL de la pagina "votos_candidato".
+	 * Esta mostrara el listado con la cantidad de votos de los candidatos.
+	 * @param model
+	 * @return
+	 */
+	@GetMapping("/votos")
+	public String getVotosCandidatosPage(Model model) {
+		model.addAttribute("candidatos", candidatoService.getListaCandidato().getListaCandidatos());
+		return "votos_candidato";
+	}
+	
+	/**
+	 * Metodo que agregara un voto al Candidato
+	 * "{codigo}" es una variable que viene en la URL.
+	 * @param codigo
+	 * @return
+	 */
+	@GetMapping("/votar/{codigo}")
+	public ModelAndView getAgregarVotoCandidatoPage(@PathVariable(value = "codigo") String codigo) {
+		ModelAndView modelAV = new ModelAndView("redirect:/candidato/votos");
+		candidatoService.sumarVoto(codigo);
 		return modelAV;
 	}
 }
