@@ -21,6 +21,7 @@ public class Candidato {
 	private String descripcion;	
 	
 	private String image;	
+	private int votosDisponibles;
 	private int cantidadVotos;
 	
 	/*
@@ -28,6 +29,7 @@ public class Candidato {
 	 */
 	public Candidato() {
 		this.image = "FondoN.png";
+		this.votosDisponibles = 3;
 		this.cantidadVotos = 0;
 	}
 	
@@ -42,6 +44,7 @@ public class Candidato {
 		this.descripcion = descripcion;
 		this.image = image;
 		
+		this.votosDisponibles = 3;
 		this.cantidadVotos = 0;
 	}
 	
@@ -56,6 +59,7 @@ public class Candidato {
 		this.descripcion = descripcion;
 		
 		this.image = "FondoN.png";
+		this.votosDisponibles = 3;
 		this.cantidadVotos = 0;
 	}
 
@@ -97,6 +101,13 @@ public class Candidato {
 		this.image = image;
 	}
 
+	public int getVotosDisponibles() {
+		return votosDisponibles;
+	}
+	public void setVotosDisponibles(int votosDisponibles) {
+		this.votosDisponibles = votosDisponibles;
+	}
+	
 	public int getCantidadVotos() {
 		return cantidadVotos;
 	}
