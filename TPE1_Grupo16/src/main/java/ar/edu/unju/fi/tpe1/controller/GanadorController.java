@@ -23,6 +23,7 @@ public class GanadorController {
 	
 	@GetMapping("/lista")
 	public String getGanadoresPage(Model model) {
+		LOGGER.info("METHOD: getGanadoresPage() - INFO: Se agrega al contenido de la pagina una lista de Ganadores");
 		model.addAttribute("ganadores", ganadorService.getListaGanador().getListaGanadores());
 		return "lista_ganadores";
 	}	

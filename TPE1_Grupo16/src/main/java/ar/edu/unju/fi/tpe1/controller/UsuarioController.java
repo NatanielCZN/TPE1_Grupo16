@@ -29,12 +29,14 @@ public class UsuarioController {
 	
 	@GetMapping("/lista")
 	public String getUsuariosPage(Model model) {
+		LOGGER.info("METHOD: getUsuariosPage() - INFO: Se agrega al contenido de la pagina una lista de Usuarios");
 		model.addAttribute("usuarios", usuarioService.getListaUsuario().getListaUsuarios());
 		return "lista_usuarios";
 	}
 	
 	@GetMapping("/nuevo")
 	public String getNuevoUsuarioPage(Model model) {
+		LOGGER.info("METHOD: getNuevoUsuario() - INFO: Se agrega al contenido de la pagina un objeto de tipo Usuario");
 		model.addAttribute("usuario", usuarioService.getUsuario());
 		return "nuevo_usuario";
 	}
@@ -42,6 +44,7 @@ public class UsuarioController {
 	@PostMapping("/guardar")
 	public ModelAndView guardarNuevoUsuario(@Validated @ModelAttribute("usuario") Usuario nuevoUsuario, BindingResult bindingR) {
 		if(bindingR.hasErrors()) {
+			LOGGER.info("METHOD: guardarNuevoUsuario() - INFO: Se detecto un error mediante las validaciones");
 			ModelAndView modelAV = new ModelAndView("nuevo_usuario");
 			modelAV.addObject("usuario", nuevoUsuario);
 			return modelAV;
@@ -49,10 +52,10 @@ public class UsuarioController {
 		ModelAndView modelAV = new ModelAndView("redirect:/usuario/lista");
 		
 		if(usuarioService.guardarUsuario(nuevoUsuario)) {
-			LOGGER.info("Se agrego un objeto a la lista de usuarios");
+			LOGGER.info("METHOD: guardarNuevoUsuario() - INFO: Se agrego un objeto a la lista de Usuarios");
 		}
 		else {
-			LOGGER.info("No se pudo agregar un objeto a la lista de usuarios");
+			LOGGER.info("METHOD: guardarNuevoUsuario() - INFO: No se pudo agregar un objeto a la lista de Usuarios");
 		}
 		
 		return modelAV;
@@ -60,6 +63,7 @@ public class UsuarioController {
 	
 	@GetMapping("/mensajeVoto")
 	public String getMensajeVotoPage(Model model) {
+		LOGGER.info("METHOD: getMensajeVotoPage() - INFO: Se agrega al contenido de la pagina un objeto de tipo Usuario");
 		usuarioService.descontarVoto();
 		model.addAttribute("usuario", usuarioService.getUltimoUsuario());
 		return "msg_votacionrealizada";
