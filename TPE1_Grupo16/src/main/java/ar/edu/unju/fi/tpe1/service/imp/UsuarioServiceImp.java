@@ -30,8 +30,7 @@ public class UsuarioServiceImp implements IUsuarioService {
 
 	@Override
 	public void descontarVoto() {
-		// TODO Auto-generated method stub
-
+		
 	}
 
 }

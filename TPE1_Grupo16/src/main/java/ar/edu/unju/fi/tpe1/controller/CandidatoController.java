@@ -74,13 +74,22 @@ public class CandidatoController {
 			modelAV.addObject("candidato", nuevoCandidato);
 			return modelAV;
 		}
-		ModelAndView modelAV = new ModelAndView("redirect:/candidato/lista");
-				
-		if(candidatoService.guardarCandidato(nuevoCandidato)) {
-			LOGGER.info("Se agrego un objeto a la lista de candidatos");
-		}
 		
-		return modelAV;
+		
+		if(candidatoService.verificarCodigo(nuevoCandidato)) {
+			ModelAndView modelAV = new ModelAndView("redirect:/candidato/lista");
+			if(candidatoService.guardarCandidato(nuevoCandidato)) {
+				LOGGER.info("Se agrego un objeto a la lista de candidatos");
+			}
+			else {
+				LOGGER.info("No se pudo agregar el objeto a la lista");
+			}			
+			return modelAV;
+		}
+		else {
+			ModelAndView modelAV = new ModelAndView("msg_codigoincorrecto");
+			return modelAV;
+		}	
 	}
 	
 	/**
@@ -153,7 +162,7 @@ public class CandidatoController {
 	 */
 	@GetMapping("/votar/{codigo}")
 	public ModelAndView getAgregarVotoCandidatoPage(@PathVariable(value = "codigo") String codigo) {
-		ModelAndView modelAV = new ModelAndView("redirect:/candidato/votos");
+		ModelAndView modelAV = new ModelAndView("msg_votacionrealizada");
 		candidatoService.sumarVoto(codigo);
 		return modelAV;
 	}

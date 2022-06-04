@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Lista Votaciones</title>
+<title>Votacion Realizada</title>
 
 <link rel="stylesheet" type="text/css"
 	th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
@@ -12,34 +12,21 @@
 <body class="container bg-secondary">
 	<header th:replace="/layouts/header :: header"></header>
 	
-	<section class="row bg-light py-2">
-		<h2 class="text-center">USUARIOS</h2>
+	<section class="row bg-light text-center py-2">
+		<h2>GRACIAS</h2>
 		<hr />
-		
-		<table class="table table-striped table-hover table-responsive table-bordered text-center my-4">
-			<thead>
-				<tr>
-					<th>Nombre</th>
-					<th>E-mail</th>
-					<th>Fecha de Nacimiento</th>
-					<th>Edad</th>
-				</tr>
-			</thead>
-			
-			<tbody>
-				<tr th:each="usuario: ${usuarios}">
-					<td th:text="${usuario.nombre}" ></td>
-					<td th:text="${usuario.email}" ></td>
-					<td th:text="${#temporals.format(usuario.fechaNacimiento, 'dd/MM/yyyy')}" ></td>
-					<td th:text="${usuario.getEdad() + ' años'}" ></td>
-				</tr>
-			</tbody>			
-		</table>
-		
+		<p>
+			Gracias por participar en la votacion del videojuego del año 2022
+    	</p>
+    	
+    	<div class="text-center">
+			<a class="border-dark btn btn-primary m-2" th:href="@{/candidato/votos}" id="idCancelar" >Continuar</a>
+		</div>
+       	
 	</section>
-	
+		
 	<footer th:replace="layouts/footer :: footer"></footer>
-	
+
 	<script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
 	<script type="text/javascript" th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
 	<script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>

@@ -26,8 +26,18 @@ public class CandidatoServiceImp implements ICandidatoService {
 	}
 
 	@Override
+	public boolean verificarCodigo(Candidato candidato) {
+		for(Candidato cand : this.listaCandidato.getListaCandidatos()) {
+			if(cand.getCodigo().equals(candidato.getCodigo())) {
+				return false;
+			}
+		}
+		return true;
+	}
+	
+	@Override
 	public boolean guardarCandidato(Candidato candidato) {
-		// Guarda un objeto Candidato en la lista de candidatos
+		// Guarda un objeto Candidato en la lista de candidatos		
 		return this.listaCandidato.getListaCandidatos().add(candidato);
 	}
 

@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Votacion Realizada</title>
+<title>Codigo Incorrecto</title>
 
 <link rel="stylesheet" type="text/css"
 	th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
@@ -13,11 +13,16 @@
 	<header th:replace="/layouts/header :: header"></header>
 	
 	<section class="row bg-light text-center py-2">
-		<h2>GRACIAS</h2>
+		<h2>CODIGO UTILIZADO</h2>
 		<hr />
 		<p>
-			Gracias por participar en la votacion del videojuego del año 2022
+			El codigo con el que intento registrar el videojuego ya se encuentra en uso.
     	</p>
+    	
+    	<div class="text-center">
+			<a class="border-dark btn btn-primary m-2" th:href="@{/candidato/nuevo}" id="idNuevo" >Volver</a>
+			<a class="border-dark btn btn-secondary m-2" th:href="@{/candidato/lista}" id="idCancelar" >Cancelar</a>
+		</div>
        	
 	</section>
 		
