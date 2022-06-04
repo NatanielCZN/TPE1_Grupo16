@@ -27,6 +27,7 @@
 					<th>Nombre</th>
 					<th>Empresa</th>
 					<th>Cantidad de Votos</th>
+					<th>Porcentaje</th>
 				</tr>
 			</thead>
 			
@@ -36,6 +37,14 @@
 					<td th:text="${candidato.nombre}" ></td>
 					<td th:text="${candidato.empresa}" ></td>
 					<td class="text-danger" th:text="${candidato.cantidadVotos}" ><strong></strong></td>
+					<td th:text="${candidato.porcentaje} + '%'" ></td>
+				</tr>
+				<tr class="bg-info border-dark">
+					<td>-</td>
+					<td>TOTAL</td>
+					<td>-</td>
+					<td th:text="${total}"></td>
+					<td>100%</td>
 				</tr>
 			</tbody>			
 		</table>

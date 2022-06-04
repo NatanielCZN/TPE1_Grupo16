@@ -15,4 +15,6 @@ public interface ICandidatoService {
 	public ListaCandidato getListaCandidato();
 	public Candidato buscarCandidato(String codigo);
 	public void sumarVoto(String codigo);
+	public int getCantidadTotalVotos();
+	public void modificarPorcentajeCandidato(int votos);
 }

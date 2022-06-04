@@ -22,6 +22,7 @@ public class Candidato {
 	
 	private String image;	
 	private int cantidadVotos;
+	private float porcentaje;
 	
 	/*
 	 * Constructor no parametrizado
@@ -29,6 +30,7 @@ public class Candidato {
 	public Candidato() {
 		this.image = "FNuevo.png";
 		this.cantidadVotos = 0;
+		this.porcentaje = 0;
 	}
 	
 	/*
@@ -43,6 +45,7 @@ public class Candidato {
 		this.image = image;
 		
 		this.cantidadVotos = 0;
+		this.porcentaje = 0f;
 	}
 
 	/*
@@ -89,10 +92,17 @@ public class Candidato {
 	public void setCantidadVotos(int cantidadVotos) {
 		this.cantidadVotos = cantidadVotos;
 	}
+	
+	public float getPorcentaje() {
+		return porcentaje;
+	}
+	public void setPorcentaje(float porcentaje) {
+		this.porcentaje = porcentaje;
+	}
 
 	@Override
 	public String toString() {
 		return "Candidato [codigo=" + codigo + ", nombre=" + nombre + ", empresa=" + empresa + ", descripcion="
-				+ descripcion + ", image=" + image + ", cantidadVotos=" + cantidadVotos + "]";
+				+ ", cantidadVotos=" + cantidadVotos + ", porcentaje=" + porcentaje + "%]";
 	}	
 }

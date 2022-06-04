@@ -80,4 +80,28 @@ public class CandidatoServiceImp implements ICandidatoService {
 			}
 		}	
 	}
+	
+	@Override
+	public int getCantidadTotalVotos() {
+		// Obtengo la cantidad total de votos
+		int suma = 0;		
+		for(Candidato cand : listaCandidato.getListaCandidatos()) {
+			suma = suma + cand.getCantidadVotos();
+		}		
+		return suma;
+	}
+	
+	@Override
+	public void modificarPorcentajeCandidato(int votos) {
+		float porcentaje = 0f;
+		for(Candidato cand : listaCandidato.getListaCandidatos()) {
+			try {
+				porcentaje = cand.getCantidadVotos() * 100 / votos;
+				cand.setPorcentaje(porcentaje);
+			}
+			catch(ArithmeticException ex) {
+				cand.setPorcentaje(0f);
+			}			
+		}
+	}
 }

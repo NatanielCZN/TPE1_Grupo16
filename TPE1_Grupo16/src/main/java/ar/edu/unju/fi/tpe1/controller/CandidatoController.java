@@ -138,6 +138,9 @@ public class CandidatoController {
 	 */
 	@GetMapping("/votos")
 	public String getVotosCandidatosPage(Model model) {
+		int total = candidatoService.getCantidadTotalVotos();
+		model.addAttribute("total", total);
+		candidatoService.modificarPorcentajeCandidato(total);		
 		model.addAttribute("candidatos", candidatoService.getListaCandidato().getListaCandidatos());
 		return "votos_candidato";
 	}
