@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unju.fi.tpe1.model.Candidato;
 import ar.edu.unju.fi.tpe1.service.ICandidatoService;
+import ar.edu.unju.fi.tpe1.service.IUsuarioService;
 
 @Controller
 @RequestMapping("/candidato")
@@ -27,6 +28,10 @@ public class CandidatoController {
 	// Elijo a cual implementacion hago referencia
 	@Qualifier("CandidatoServiceImp")
 	private ICandidatoService candidatoService;
+	
+	@Autowired
+	@Qualifier("UsuarioServiceImp")
+	private IUsuarioService usuarioService;
 	
 	// Creo una constante de clase tipo Log
 	private static final Log LOGGER = LogFactory.getLog(CandidatoController.class);
@@ -39,8 +44,15 @@ public class CandidatoController {
 	 */
 	@GetMapping("/lista")
 	public String getCandidatosPage(Model model) {
-		model.addAttribute("candidatos", candidatoService.getListaCandidato().getListaCandidatos());
-		return "lista_candidatos";
+		if(usuarioService.getListaUsuario().getListaUsuarios().size() > 3) {
+			LOGGER.info("METHOD: getCandidatosPage() - INFO: Se agrega al contenido de la pagina una lista de Candidatos");
+			model.addAttribute("candidatos", candidatoService.getListaCandidato().getListaCandidatos());
+			return "lista_candidatos";
+		}
+		else {
+			LOGGER.info("METHOD: getCandidatosPage() - INFO: Se debe completar un formulario para acceder para visualizar el contenido de la pagina");
+			return "msg_llenarformulario";
+		}		
 	}
 	
 	/**
@@ -51,6 +63,7 @@ public class CandidatoController {
 	 */
 	@GetMapping("/nuevo")
 	public String getNuevoCandidatoPage(Model model) {
+		LOGGER.info("METHOD: getNuevoCandidatoPage() - INFO: Se agrega al contenido de la pagina un objeto de tipo Candidato");
 		model.addAttribute("candidato", candidatoService.getCandidato());
 		return "nuevo_candidato";
 	}
@@ -69,18 +82,27 @@ public class CandidatoController {
 		 * (Errores que pueden haber ocurrido)
 		 */
 		if(bindingR.hasErrors()) {
-			LOGGER.info("Ocurrio un error al intentar guardar un candidato");
+			LOGGER.info("METHOD: guardarNuevoCandidato() - INFO: Se detecto un error mediante las validaciones");
 			ModelAndView modelAV = new ModelAndView("nuevo_candidato");
 			modelAV.addObject("candidato", nuevoCandidato);
 			return modelAV;
-		}
-		ModelAndView modelAV = new ModelAndView("redirect:/candidato/lista");
-				
-		if(candidatoService.guardarCandidato(nuevoCandidato)) {
-			LOGGER.info("Se agrego un objeto a la lista de candidatos");
-		}
+		}		
 		
-		return modelAV;
+		if(candidatoService.verificarCodigo(nuevoCandidato)) {
+			ModelAndView modelAV = new ModelAndView("redirect:/candidato/lista");
+			if(candidatoService.guardarCandidato(nuevoCandidato)) {
+				LOGGER.info("METHOD: guardarNuevoCandidato() - INFO: Se agrego un objeto a la lista de Candidatos");
+			}
+			else {
+				LOGGER.info("METHOD: getNuevoUsuario() - INFO: No se pudo agregar un objeto a la lista de Candidatos");
+			}			
+			return modelAV;
+		}
+		else {
+			LOGGER.info("METHOD: getNuevoUsuario() - INFO: El codigo del objeto que intento agregar a la lista ya se encuentra en uso");
+			ModelAndView modelAV = new ModelAndView("msg_codigoincorrecto");
+			return modelAV;
+		}	
 	}
 	
 	/**
@@ -92,6 +114,7 @@ public class CandidatoController {
 	 */
 	@GetMapping("/editar/{codigo}")
 	public ModelAndView getEditarDatosCandidatoPage(@PathVariable(value = "codigo") String codigo) {
+		LOGGER.info("METHOD: getEditarDatosCandidatoPage() - INFO: Se busca un Candidato en la lista, de acuerdo a su codigo");
 		ModelAndView modelAV = new ModelAndView("edicion_candidato");
 		Candidato candidato = candidatoService.buscarCandidato(codigo);
 		modelAV.addObject("candidato", candidato);
@@ -108,11 +131,13 @@ public class CandidatoController {
 	@PostMapping("/modificar")
 	public ModelAndView editarDatosCandidato(@Validated @ModelAttribute("candidato") Candidato candidatoMod, BindingResult bindingR) {
 		if(bindingR.hasErrors()) {
+			LOGGER.info("METHOD: editarDatosCandidato() - INFO: Se detecto un error mediante las validaciones");
 			ModelAndView modelAV = new ModelAndView("edicion_candidato");
 			modelAV.addObject("candidato", candidatoMod);
 			return modelAV;
 		}
 		
+		LOGGER.info("METHOD: editarDatosCandidato() - INFO: Se modificaron los datos de un Candidato");
 		ModelAndView mav = new ModelAndView("redirect:/candidato/lista");
 		candidatoService.modificarCandidato(candidatoMod);
 		return mav;
@@ -125,6 +150,7 @@ public class CandidatoController {
 	 */
 	@GetMapping("/eliminar/{codigo}")
 	public ModelAndView eliminarCandidato(@PathVariable("codigo") String codigo) {
+		LOGGER.info("METHOD: eliminarCandidato() - INFO: Se elimina un Candidato en la lista, de acuerdo a su codigo");
 		ModelAndView modelAV = new ModelAndView("redirect:/candidato/lista");
 		candidatoService.eliminarCandidato(codigo);
 		return modelAV;
@@ -138,6 +164,11 @@ public class CandidatoController {
 	 */
 	@GetMapping("/votos")
 	public String getVotosCandidatosPage(Model model) {
+		LOGGER.info("METHOD: getVotosCandidatosPage() - INFO: Se agrega al contenido de la pagina el total de votos");
+		int total = candidatoService.getCantidadTotalVotos();
+		model.addAttribute("total", total);
+		LOGGER.info("METHOD: getVotosCandidatosPage() - INFO: Se agrega al contenido de la pagina una lista de Candidatos con sus votos actualizados");
+		candidatoService.modificarPorcentajeCandidato(total);		
 		model.addAttribute("candidatos", candidatoService.getListaCandidato().getListaCandidatos());
 		return "votos_candidato";
 	}
@@ -150,8 +181,15 @@ public class CandidatoController {
 	 */
 	@GetMapping("/votar/{codigo}")
 	public ModelAndView getAgregarVotoCandidatoPage(@PathVariable(value = "codigo") String codigo) {
-		ModelAndView modelAV = new ModelAndView("redirect:/candidato/votos");
-		candidatoService.sumarVoto(codigo);
+		ModelAndView modelAV = new ModelAndView("redirect:/usuario/mensajeVoto");
+		if(usuarioService.getUltimoUsuario().getVotosDisponibles() > 0) {
+			LOGGER.info("METHOD: getAgregarVotoCandidatoPage() - INFO: Se agrega un voto a un Candidato de acuerdo a su codigo");
+			candidatoService.sumarVoto(codigo);
+		}
+		else {
+			LOGGER.info("METHOD: getAgregarVotoCandidatoPage() - INFO: No se pudo agregar un voto a un Candidato porque ya no dispone de votos");
+		}
+		
 		return modelAV;
 	}
 }

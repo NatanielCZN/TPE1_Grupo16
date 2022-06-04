@@ -9,10 +9,13 @@ import ar.edu.unju.fi.tpe1.util.ListaCandidato;
 public interface ICandidatoService {
 	
 	public Candidato getCandidato();
-	public boolean guardarCandidato(Candidato candidato);
+	public boolean verificarCodigo(Candidato candidato);
+	public boolean guardarCandidato(Candidato candidato);	
 	public void modificarCandidato(Candidato candidato);
 	public void eliminarCandidato(String codigo);
 	public ListaCandidato getListaCandidato();
 	public Candidato buscarCandidato(String codigo);
 	public void sumarVoto(String codigo);
+	public int getCantidadTotalVotos();
+	public void modificarPorcentajeCandidato(int votos);
 }

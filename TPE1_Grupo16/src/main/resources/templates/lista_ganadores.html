@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Lista Votaciones</title>
+<title>Lista Ganadores</title>
 
 <link rel="stylesheet" type="text/css"
 	th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
@@ -13,41 +13,36 @@
 	<header th:replace="/layouts/header :: header"></header>
 	
 	<section class="row bg-light py-2">
-		<h2 class="text-center">VOTACIONES</h2>
+		<h2 class="text-center">GANADORES</h2>
 		<hr />
-	
-		<div class="text-end">
-			<a class="border-dark btn btn-primary mt-2" id="nuevoCandidato" th:href="@{/candidato/lista}" >CANDIDATOS</a>
-		</div>	
+		<p class = "text-center">
+			Todos los ganadores del premio al videojuego del año desde el 2014.
+		</p>
 		
 		<table class="table table-striped table-hover table-responsive table-bordered text-center my-4">
 			<thead>
 				<tr>
-					<th>Codigo</th>
+					<th>N°</th>
 					<th>Nombre</th>
 					<th>Empresa</th>
-					<th>Cantidad de Votos</th>
-					<th>Porcentaje</th>
+					<th>Año Ganador</th>
 				</tr>
 			</thead>
 			
 			<tbody>
-				<tr th:each="candidato: ${candidatos}">
-					<td th:text="${candidato.codigo}" ></td>
-					<td th:text="${candidato.nombre}" ></td>
-					<td th:text="${candidato.empresa}" ></td>
-					<td class="text-danger" th:text="${candidato.cantidadVotos}" ><strong></strong></td>
-					<td th:text="${candidato.porcentaje} + '%'" ></td>
-				</tr>
-				<tr class="bg-info border-dark">
-					<td>-</td>
-					<td>TOTAL</td>
-					<td>-</td>
-					<td th:text="${total}"></td>
-					<td>100%</td>
+				<tr th:each="ganador: ${ganadores}">
+					<td th:text="${ganador.num}" ></td>
+					<td th:text="${ganador.nombre}" ></td>
+					<td th:text="${ganador.empresa}" ></td>
+					<td th:text="${ganador.anio}" ></td>
 				</tr>
 			</tbody>			
 		</table>
+		
+		<div class="text-center">
+			<img th:src="@{/images/Cubo.png}" class="card-img-top tamImg" alt="Imagen" >
+			<h4 >¿Quien sera el ganador del año 2020?</h4>			
+		</div>
 		
 	</section>
 	

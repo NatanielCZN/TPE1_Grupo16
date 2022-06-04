@@ -23,11 +23,13 @@ public class Usuario {
 	@PastOrPresent(message = "Ingrese una fecha valida")
 	private LocalDate fechaNacimiento;
 	
+	private int votosDisponibles;	
+
 	/*
 	 * Constructor no parametrizado
 	 */
 	public Usuario() {
-		
+		this.votosDisponibles = 3;
 	}
 	
 	/*
@@ -38,6 +40,8 @@ public class Usuario {
 		this.nombre = nombre;
 		this.email = email;
 		this.fechaNacimiento = fechaNacimiento;
+		
+		this.votosDisponibles = 3;
 	}
 
 	/*
@@ -73,6 +77,13 @@ public class Usuario {
 	}
 	public void setFechaNacimiento(LocalDate fechaNacimiento) {
 		this.fechaNacimiento = fechaNacimiento;
+	}
+	
+	public int getVotosDisponibles() {
+		return votosDisponibles;
+	}
+	public void setVotosDisponibles(int votosDisponibles) {
+		this.votosDisponibles = votosDisponibles;
 	}
 
 	@Override

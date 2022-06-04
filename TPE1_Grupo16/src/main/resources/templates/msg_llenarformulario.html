@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Llenar Formulario</title>
+
+<link rel="stylesheet" type="text/css"
+	th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+</head>
+
+<body class="container bg-secondary">
+	<header th:replace="/layouts/header :: header"></header>
+	
+	<section class="row bg-light text-center py-2">
+		<h2>LLENAR FORMULARIO</h2>
+		<hr />
+		<p>
+			Antes de poder acceder a la votacion, debe llenar un formulario.
+    	</p>
+    	
+    	<div class="text-center">
+			<a class="border-dark btn btn-primary m-2" th:href="@{/usuario/nuevo}" id="idNuevo" >Formulario</a>
+			<a class="border-dark btn btn-secondary m-2" th:href="@{/home}" id="idCancelar" >Inicio</a>
+		</div>
+       	
+	</section>
+		
+	<footer th:replace="layouts/footer :: footer"></footer>
+
+	<script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
+	<script type="text/javascript" th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+	<script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</body>
+</html>
