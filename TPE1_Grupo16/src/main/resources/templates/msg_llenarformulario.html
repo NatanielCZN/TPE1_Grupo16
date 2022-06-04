@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Votacion Realizada</title>
+<title>Llenar Formulario</title>
 
 <link rel="stylesheet" type="text/css"
 	th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
@@ -13,20 +13,15 @@
 	<header th:replace="/layouts/header :: header"></header>
 	
 	<section class="row bg-light text-center py-2">
-		<h2>GRACIAS</h2>
+		<h2>LLENAR FORMULARIO</h2>
 		<hr />
-		<p th:if="${usuario.votosDisponibles > 0}">
-			Gracias por participar en la votacion del videojuego del año 2022.<br />
-			Sus votos disponibles son <span th:text="${usuario.votosDisponibles}"></span>
-    	</p>
-    	<p th:if="${usuario.votosDisponibles <= 0}">
-			Usted ya no dispone de votos disponibles.<br />
-			Gracias por participar en la votacion del videojuego del año 2022.
+		<p>
+			Antes de poder acceder a la votacion, debe llenar un formulario.
     	</p>
     	
     	<div class="text-center">
-			<a class="border-dark btn btn-primary m-2" th:href="@{/candidato/votos}" id="idCancelar" >Continuar</a>
-			<a class="border-dark btn btn-secondary m-2" th:if="${usuario.votosDisponibles > 0}" th:href="@{/candidato/lista}" id="idCancelar" >Volver</a>
+			<a class="border-dark btn btn-primary m-2" th:href="@{/usuario/nuevo}" id="idNuevo" >Formulario</a>
+			<a class="border-dark btn btn-secondary m-2" th:href="@{/home}" id="idCancelar" >Inicio</a>
 		</div>
        	
 	</section>

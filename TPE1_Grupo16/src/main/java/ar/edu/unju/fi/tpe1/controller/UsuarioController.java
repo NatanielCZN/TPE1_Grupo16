@@ -51,7 +51,17 @@ public class UsuarioController {
 		if(usuarioService.guardarUsuario(nuevoUsuario)) {
 			LOGGER.info("Se agrego un objeto a la lista de usuarios");
 		}
+		else {
+			LOGGER.info("No se pudo agregar un objeto a la lista de usuarios");
+		}
 		
 		return modelAV;
+	}
+	
+	@GetMapping("/mensajeVoto")
+	public String getMensajeVotoPage(Model model) {
+		usuarioService.descontarVoto();
+		model.addAttribute("usuario", usuarioService.getUltimoUsuario());
+		return "msg_votacionrealizada";
 	}
 }

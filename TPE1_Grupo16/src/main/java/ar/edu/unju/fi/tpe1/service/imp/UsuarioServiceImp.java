@@ -29,8 +29,16 @@ public class UsuarioServiceImp implements IUsuarioService {
 	}
 
 	@Override
-	public void descontarVoto() {
-		
+	public Usuario getUltimoUsuario() {
+		int tam = this.listaUsuario.getListaUsuarios().size();		
+		Usuario usr = this.listaUsuario.getListaUsuarios().get(tam-1);		
+		return usr;
 	}
-
+	
+	@Override
+	public void descontarVoto() {
+		int tam = this.listaUsuario.getListaUsuarios().size();		
+		Usuario usr = this.listaUsuario.getListaUsuarios().get(tam-1);		
+		usr.setVotosDisponibles(usr.getVotosDisponibles() - 1);
+	}
 }

@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unju.fi.tpe1.model.Candidato;
 import ar.edu.unju.fi.tpe1.service.ICandidatoService;
+import ar.edu.unju.fi.tpe1.service.IUsuarioService;
 
 @Controller
 @RequestMapping("/candidato")
@@ -27,6 +28,10 @@ public class CandidatoController {
 	// Elijo a cual implementacion hago referencia
 	@Qualifier("CandidatoServiceImp")
 	private ICandidatoService candidatoService;
+	
+	@Autowired
+	@Qualifier("UsuarioServiceImp")
+	private IUsuarioService usuarioService;
 	
 	// Creo una constante de clase tipo Log
 	private static final Log LOGGER = LogFactory.getLog(CandidatoController.class);
@@ -39,8 +44,13 @@ public class CandidatoController {
 	 */
 	@GetMapping("/lista")
 	public String getCandidatosPage(Model model) {
-		model.addAttribute("candidatos", candidatoService.getListaCandidato().getListaCandidatos());
-		return "lista_candidatos";
+		if(usuarioService.getListaUsuario().getListaUsuarios().size() > 3) {
+			model.addAttribute("candidatos", candidatoService.getListaCandidato().getListaCandidatos());
+			return "lista_candidatos";
+		}
+		else {
+			return "msg_llenarformulario";
+		}		
 	}
 	
 	/**
@@ -162,8 +172,11 @@ public class CandidatoController {
 	 */
 	@GetMapping("/votar/{codigo}")
 	public ModelAndView getAgregarVotoCandidatoPage(@PathVariable(value = "codigo") String codigo) {
-		ModelAndView modelAV = new ModelAndView("msg_votacionrealizada");
-		candidatoService.sumarVoto(codigo);
+		ModelAndView modelAV = new ModelAndView("redirect:/usuario/mensajeVoto");
+		if(usuarioService.getUltimoUsuario().getVotosDisponibles() > 0) {
+			candidatoService.sumarVoto(codigo);
+		}
+		
 		return modelAV;
 	}
 }
